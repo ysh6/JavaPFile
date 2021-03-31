@@ -5,10 +5,27 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class FileOperation {
+public class FileOperation  {
 	
 	String fname;
 	String path;
+	
+	public void findFile(String fname,String path)
+    {
+		File f=new File(path+fname);
+		
+		if(f.exists())
+		{
+			System.out.println(fname+" File found");
+		}
+		else
+		{
+			
+			System.out.println(fname+ " File doesnot exists");
+		}
+       
+        
+        }
 		
 	 void fileDel(String path, String fname)
 	 {
@@ -19,9 +36,11 @@ public class FileOperation {
 		 }
 		 
 		 else {
-			 System.out.println("File does not exist");
+			 System.out.println("File does not exist or provided path is incorrect");
 			 
 		 }
+		 
+		 
 		 
 	 }
 	
@@ -36,7 +55,7 @@ public class FileOperation {
 			System.out.println("Parent is :"+f.getParent());
 		}
 		else
-			System.out.println(f.getName()+":file already exists");
+			System.out.println(f.getName()+": file already exists");
 		
 		}
 		catch (IOException e) {
@@ -48,31 +67,47 @@ public class FileOperation {
 		
 	}
 	
-	void fileMenu() {
+	void fileMenu() throws InterruptedException {
 		
 		int i;
 		System.out.println("File Menu");
 		System.out.println("========================");
 		System.out.println("1.  Create File");
+		System.out.println("2.  Delete File");
+		System.out.println("3.  Search File");
+		System.out.println("4.  Main Menu");
+		System.out.println("========================");
+		
+		WelcomeScreen ws=new WelcomeScreen();
 		
 		Scanner sc= new Scanner(System.in);
 		System.out.println("Enter the Option: \t");
 		i=Integer.parseInt(sc.next());
+		System.out.println("Enter the path/location");
+		path=sc.next();
 		
 		switch (i) {
 		case 1:
-			System.out.println("Enter the path/location");
-			path=sc.next();
+			
 			System.out.println("Enter FileName to create");
 			fname=sc.next();
 			fileCreate(path,fname);
-			break;
+			fileMenu();
 		case 2:
-			System.out.println("Enter the path/location");
-			path=sc.next();
 			System.out.println("Enter FileName to delete");
 			fname=sc.next();			
 			fileDel(path, fname);
+			fileMenu();
+			
+		case 3:
+			System.out.println("Enter FileName to delete");
+			fname=sc.next();			
+			findFile(path, fname);
+			fileMenu();
+			
+		case 4:
+			System.out.println("\n");
+			ws.displayMenu();
 
 		default:
 			break;

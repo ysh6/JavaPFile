@@ -25,10 +25,12 @@ public class WelcomeScreen {
 	
 	 // System.out.println("Enter the file path:");
 	// String path=sc.next();
-	 
+	  
 	 
 	 System.out.println("Please provide your input:\t");
+	 
 	 int input= Integer.parseInt(sc.next());
+	 
 	 if(input>=0&&input<4)
 	 {
 		 
@@ -42,8 +44,7 @@ public class WelcomeScreen {
 		    System.out.println("File Operations:");
 		    FileOperation fo=new FileOperation();
 		    fo.fileMenu();
-		    
-		    displayMenu();
+		    //displayMenu();
 		    break;
 		  case 3:
 			  System.out.println("Application Closed");
