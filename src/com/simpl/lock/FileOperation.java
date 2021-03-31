@@ -77,13 +77,11 @@ public class FileOperation  {
 		System.out.println("3.  Search File");
 		System.out.println("4.  Main Menu");
 		System.out.println("========================");
-		
-		WelcomeScreen ws=new WelcomeScreen();
-		
+			
 		Scanner sc= new Scanner(System.in);
 		System.out.println("Enter the Option: \t");
 		i=Integer.parseInt(sc.next());
-		System.out.println("Enter the path/location");
+		System.out.println("Enter the path or location");
 		path=sc.next();
 		
 		switch (i) {
@@ -107,6 +105,7 @@ public class FileOperation  {
 			
 		case 4:
 			System.out.println("\n");
+			WelcomeScreen ws=new WelcomeScreen();
 			ws.displayMenu();
 
 		default:
