@@ -6,9 +6,13 @@ public class LockersMain {
 	{
 		WelcomeScreen w=new WelcomeScreen();
 		w.displayWelcome();
+		
 		try {
 			w.displayMenu();
-		} catch (InterruptedException e) {
+		}
+		
+		
+		catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -28,9 +29,11 @@ public class ListFiles {
 	void sortedmenu() throws InterruptedException
 	{
 		WelcomeScreen w=new WelcomeScreen();
-		
+		System.out.println("Enter the path");
+		Scanner sc=new Scanner(System.in);
+		String path = sc.next();
 		System.out.println("Listing Files and directories:");
-		File ls=new File("/home/yeshsnygmail/ListProj/");
+		File ls=new File(path);
 		 File[] files=ls.listFiles();
 		 Set<String> sortFile= new TreeSet<>();
 		 
@@ -55,7 +58,7 @@ public class ListFiles {
 		
 		displayFiles(sortFile);
 		//Moving to Navigation Menu
-		System.out.println("Navigating to Main menu\n");
+		System.out.println("-----Returning to Main menu------ \n");
 		Thread.sleep(600);
 		w.displayMenu();
 
