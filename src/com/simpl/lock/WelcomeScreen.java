@@ -1,6 +1,7 @@
 package com.simpl.lock;
 
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import javax.swing.plaf.synth.SynthSplitPaneUI;
@@ -14,7 +15,7 @@ public class WelcomeScreen {
  
  }
  
- void  displayMenu() throws InterruptedException {
+ void  displayMenu() throws InputMismatchException,InterruptedException {
 	 System.out.println("Main Menu\n"+"======================");
 	 System.out.println("Please select the below option");
 	 System.out.println("1 "+"List Files in Ascending Order");
@@ -28,8 +29,7 @@ public class WelcomeScreen {
 	  
 	 
 	 System.out.println("Please provide your input:\t");
-	 
-	 int input= Integer.parseInt(sc.next());
+	 int input= sc.nextInt();
 	 
 	 if(input>=0&&input<4)
 	 {
@@ -60,6 +60,5 @@ public class WelcomeScreen {
 		 System.out.println("Invalid Option: Please enter correct option");
 		 displayMenu();
  }
-
  }
- }
+}

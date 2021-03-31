@@ -15,15 +15,11 @@ public class ListFiles {
 	
 	void displayFiles(Set<String> dFile)
 	{
-		
-		Iterator<String> i=dFile.iterator();
-		
+	Iterator<String> i=dFile.iterator();
 	while(i.hasNext())
 	{
 		System.out.println(i.next());
 	}
-		
-		
 	}
 	
 	void sortedmenu() throws InterruptedException
@@ -36,9 +32,8 @@ public class ListFiles {
 		File ls=new File(path);
 		 File[] files=ls.listFiles();
 		 Set<String> sortFile= new TreeSet<>();
-		 
 		 for(File file : files) {
-			 
+		 
 			//System.out.print(file.getName()+" ");
 			 if(file.isFile())
 			 {
