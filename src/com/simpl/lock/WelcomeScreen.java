@@ -1,6 +1,8 @@
 package com.simpl.lock;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -15,11 +17,22 @@ public class WelcomeScreen {
  
  }
  
- void  displayMenu() throws InputMismatchException,InterruptedException {
+ boolean validate(String path)
+ {
+	 
+	 File f=new File(path);
+	 
+	 if(f.exists())
+	 return true;
+	 else
+	 return false;
+ }
+ 
+ void  displayMenu() throws InputMismatchException,InterruptedException, NumberFormatException, IOException {
 	 System.out.println("Main Menu\n"+"======================");
 	 System.out.println("Please select the below option");
 	 System.out.println("1 "+"List Files in Ascending Order");
-	 System.out.println("2 "+"Files Menu");
+	 System.out.println("2 "+"Files Operation Menu");
 	 System.out.println("3 "+"Close Application");
 	// System.out.println("Navigate to Main Menu");
 	 Scanner sc= new Scanner(System.in);
@@ -41,7 +54,7 @@ public class WelcomeScreen {
 		    
 		    break;
 		  case 2:
-		    System.out.println("File Operations:");
+		    //System.out.println("File Operations:");
 		    FileOperation fo=new FileOperation();
 		    fo.fileMenu();
 		    //displayMenu();

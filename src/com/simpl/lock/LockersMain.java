@@ -1,5 +1,6 @@
 package com.simpl.lock;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 
 public class LockersMain {
@@ -14,16 +15,14 @@ public class LockersMain {
 		}
 		
 		
-		catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		catch(InputMismatchException e)
+		
+		
+		catch(InputMismatchException | NumberFormatException | InterruptedException | IOException e)
 		{
 			System.out.println("Enter input in Number format");
 			try {
 				w.displayMenu();
-			} catch (InputMismatchException | InterruptedException e1) {
+			} catch (InputMismatchException | InterruptedException | NumberFormatException | IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -12,6 +13,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class ListFiles {
+	
+	
 	
 	void displayFiles(Set<String> dFile)
 	{
@@ -22,14 +25,18 @@ public class ListFiles {
 	}
 	}
 	
-	void sortedmenu() throws InterruptedException
+	void sortedmenu() throws InterruptedException, InputMismatchException, NumberFormatException, IOException
 	{
 		WelcomeScreen w=new WelcomeScreen();
 		System.out.println("Enter the path");
 		Scanner sc=new Scanner(System.in);
 		String path = sc.next();
-		System.out.println("Listing Files and directories:");
 		File ls=new File(path);
+		
+		if(ls.isDirectory()||ls.isFile()) {
+		
+		System.out.println("Listing Files and directories:");
+		
 		 File[] files=ls.listFiles();
 		 Set<String> sortFile= new TreeSet<>();
 		 for(File file : files) {
@@ -53,10 +60,17 @@ public class ListFiles {
 		
 		displayFiles(sortFile);
 		//Moving to Navigation Menu
+		
+		
+		}
+		else {
+			System.out.println("Provided location path is invalid or doesnot exits");
+			
+			}
+		
 		System.out.println("-----Returning to Main menu------ \n");
 		Thread.sleep(600);
 		w.displayMenu();
-
 		
 			}
 

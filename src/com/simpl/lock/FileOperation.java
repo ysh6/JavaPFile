@@ -10,13 +10,13 @@ public class FileOperation  {
 	String fname;
 	String path;
 	
-	public void findFile(String fname,String path)
+	public void findFile(String path,String fname)
     {
 		File f=new File(path+fname);
 		
 		if(f.exists())
 		{
-			System.out.println(fname+" File found");
+			System.out.println(fname+" File found"+"\n Path: "+f.getPath());
 		}
 		else
 		{
@@ -44,11 +44,10 @@ public class FileOperation  {
 		 
 	 }
 	
-	void fileCreate(String path,String fname) {
+	void fileCreate(String path,String fname) throws IOException {
 		
 		File f= new File(path+fname);
 		
-		try {
 		if(f.createNewFile()) 
 		{
 			System.out.println("Created"+f.getName());
@@ -56,61 +55,62 @@ public class FileOperation  {
 		}
 		else
 			System.out.println(f.getName()+": file already exists");
-		
-		}
-		catch (IOException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+	
 		
 		
 		
 	}
 	
-	void fileMenu() throws InterruptedException {
+	void fileMenu() throws InterruptedException,NumberFormatException,IOException {
 		
 		int i;
-		System.out.println("File Menu");
+		System.out.println("File Operation Menu");
 		System.out.println("========================");
 		System.out.println("1.  Create File");
 		System.out.println("2.  Delete File");
 		System.out.println("3.  Search File");
 		System.out.println("4.  Main Menu");
 		System.out.println("========================");
-			
 		Scanner sc= new Scanner(System.in);
 		System.out.println("Enter the Option: \t");
 		i=Integer.parseInt(sc.next());
 		System.out.println("Enter the path or location");
 		path=sc.next();
+		File f=new File(path);
+		WelcomeScreen ws=new WelcomeScreen();
 		
-		switch (i) {
-		case 1:
-			
-			System.out.println("Enter FileName to create");
-			fname=sc.next();
-			fileCreate(path,fname);
-			fileMenu();
-		case 2:
-			System.out.println("Enter FileName to delete");
-			fname=sc.next();			
-			fileDel(path, fname);
-			fileMenu();
-			
-		case 3:
-			System.out.println("Enter FileName to delete");
-			fname=sc.next();			
-			findFile(path, fname);
-			fileMenu();
-			
-		case 4:
-			System.out.println("\n");
-			WelcomeScreen ws=new WelcomeScreen();
-			ws.displayMenu();
-
-		default:
-			break;
-		}
+	if(f.isDirectory()||f.isFile())
+	{
+	
+	switch (i) {
+	case 1:
+		
+		System.out.println("Enter FileName to create");
+		fname=sc.next();
+		fileCreate(path,fname);
+		fileMenu();
+	case 2:
+		System.out.println("Enter FileName to delete");
+		fname=sc.next();			
+		fileDel(path, fname);
+		fileMenu();
+		
+	case 3:
+		System.out.println("Enter FileName to search");
+		fname=sc.next();			
+		findFile(path, fname);
+		fileMenu();
+		
+	case 4:
+		ws.displayMenu();
+		break;
+	}
+	}
+	else
+	{
+		System.out.println("Provided path is incorrect or doesnot exists");
+		fileMenu();
+	}
 	}
 
 }
