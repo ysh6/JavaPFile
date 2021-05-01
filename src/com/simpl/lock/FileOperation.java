@@ -16,7 +16,12 @@ public class FileOperation  {
 		
 		if(f.exists())
 		{
+			String execute = (f.canExecute()) ? "e" : "";
+			String read = (f.canRead()) ? "r" : "" ;
+			String write = (f.canWrite()) ? "w" : "" ;
+			
 			System.out.println(fname+" File found"+"\n Path: "+f.getPath());
+			System.out.println(fname + "  Permissions:"+ read+write+execute);
 		}
 		else
 		{
@@ -50,7 +55,7 @@ public class FileOperation  {
 		
 		if(f.createNewFile()) 
 		{
-			System.out.println("Created"+f.getName());
+			System.out.println("Created : "+f.getName());
 			System.out.println("Parent is :"+f.getParent());
 		}
 		else
@@ -61,7 +66,7 @@ public class FileOperation  {
 		
 	}
 	
-	void fileMenu() throws InterruptedException,NumberFormatException,IOException {
+	void fileMenu(String path) throws InterruptedException,NumberFormatException,IOException {
 		
 		int i;
 		System.out.println("File Operation Menu");
@@ -74,10 +79,10 @@ public class FileOperation  {
 		Scanner sc= new Scanner(System.in);
 		System.out.println("Enter the Option: \t");
 		i=Integer.parseInt(sc.next());
-		System.out.println("Enter the path or location");
-		path=sc.next();
+	//	System.out.println("Enter the path or location");
+		//path=sc.next();
 		File f=new File(path);
-		WelcomeScreen ws=new WelcomeScreen();
+		//WelcomeScreen ws=new WelcomeScreen();
 		
 	if(f.isDirectory()||f.isFile())
 	{
@@ -88,28 +93,28 @@ public class FileOperation  {
 		System.out.println("Enter FileName to create");
 		fname=sc.next();
 		fileCreate(path,fname);
-		fileMenu();
+		fileMenu(path);
 	case 2:
 		System.out.println("Enter FileName to delete");
 		fname=sc.next();			
 		fileDel(path, fname);
-		fileMenu();
+		fileMenu(path);
 		
 	case 3:
 		System.out.println("Enter FileName to search");
 		fname=sc.next();			
 		findFile(path, fname);
-		fileMenu();
+		fileMenu(path);
 		
 	case 4:
-		ws.displayMenu();
+		WelcomeScreen.displayMenu(path);
 		break;
 	}
 	}
 	else
 	{
 		System.out.println("Provided path is incorrect or doesnot exists");
-		fileMenu();
+		fileMenu(path);
 	}
 	}
 

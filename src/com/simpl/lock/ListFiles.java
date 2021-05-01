@@ -14,7 +14,7 @@ import java.util.TreeSet;
 
 public class ListFiles {
 	
-	
+	//String path;
 	
 	void displayFiles(Set<String> dFile)
 	{
@@ -25,16 +25,14 @@ public class ListFiles {
 	}
 	}
 	
-	void sortedmenu() throws InterruptedException, InputMismatchException, NumberFormatException, IOException
+	void sortedmenu(String path) throws InterruptedException, InputMismatchException, NumberFormatException, IOException
 	{
 		WelcomeScreen w=new WelcomeScreen();
-		System.out.println("Enter the path");
 		Scanner sc=new Scanner(System.in);
-		String path = sc.next();
+		//String path = sc.next();
+		//this.path =path;
 		File ls=new File(path);
-		
 		if(ls.isDirectory()||ls.isFile()) {
-		
 		System.out.println("Listing Files and directories:");
 		
 		 File[] files=ls.listFiles();
@@ -70,7 +68,7 @@ public class ListFiles {
 		
 		System.out.println("-----Returning to Main menu------ \n");
 		Thread.sleep(600);
-		w.displayMenu();
+		w.displayMenu(path);
 		
 			}
 

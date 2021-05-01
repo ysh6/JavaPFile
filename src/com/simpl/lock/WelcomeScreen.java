@@ -9,11 +9,12 @@ import java.util.Scanner;
 import javax.swing.plaf.synth.SynthSplitPaneUI;
 
 public class WelcomeScreen {
+ String path;
 	
  void displayWelcome()
  {
 	 System.out.println("Welcome to LockedMe.com\n" +"======================== \n");
-	 System.out.println("Application: File Operations\n"+"Developer: Siva \n"+"======================== \n");
+	 System.out.println("Application: File Operations\n"+"Developer: Yeshwanth Siva \n"+"======================== \n");
  
  }
  
@@ -28,18 +29,17 @@ public class WelcomeScreen {
 	 return false;
  }
  
- void  displayMenu() throws InputMismatchException,InterruptedException, NumberFormatException, IOException {
+ static void  displayMenu(String path) throws InputMismatchException,InterruptedException, NumberFormatException, IOException {
+	 
 	 System.out.println("Main Menu\n"+"======================");
 	 System.out.println("Please select the below option");
-	 System.out.println("1 "+"List Files in Ascending Order");
+	 System.out.println("1 "+"List Files");
 	 System.out.println("2 "+"Files Operation Menu");
 	 System.out.println("3 "+"Close Application");
 	// System.out.println("Navigate to Main Menu");
-	 Scanner sc= new Scanner(System.in);
+	 
 	
-	 // System.out.println("Enter the file path:");
-	// String path=sc.next();
-	  
+	 Scanner sc= new Scanner(System.in);	  
 	 
 	 System.out.println("Please provide your input:\t");
 	 int input= sc.nextInt();
@@ -50,13 +50,13 @@ public class WelcomeScreen {
 		 switch (input) {
 		  case 1:
 		    ListFiles ls=new ListFiles();
-		    ls.sortedmenu();
+		    ls.sortedmenu(path);
 		    
 		    break;
 		  case 2:
 		    //System.out.println("File Operations:");
 		    FileOperation fo=new FileOperation();
-		    fo.fileMenu();
+		    fo.fileMenu(path);
 		    //displayMenu();
 		    break;
 		  case 3:
@@ -71,7 +71,7 @@ public class WelcomeScreen {
 	 else
 	 {
 		 System.out.println("Invalid Option: Please enter correct option");
-		 displayMenu();
+		 displayMenu(path);
  }
  }
 }
